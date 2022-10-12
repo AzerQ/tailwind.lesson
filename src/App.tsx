@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+// @ts-ignore
+import styles from "./styles/App.module.scss"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isOpen, setIsOpen] = useState(true);
+    return (
+        <div>
+            <div className={styles.parent}>
+                <h3 className={styles.header3}>Привет, я React-разработчик!</h3>
+                <div className="">
+                    <input
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        placeholder="e-mail" type="text"/>
+                    <input
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        placeholder="password"/>
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className={styles.button}>Log in
+                    </button>
+                </div>
+                {isOpen && <button className="animate-fade">TEST</button>}
+
+            </div>
+        </div>
+    );
 }
 
 export default App;
